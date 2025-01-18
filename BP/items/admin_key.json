@@ -1,0 +1,21 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:item": {
+		"description": {
+			"identifier": "omegaverse_z:admin_key",
+			"menu_category": {
+				"category": "none"
+			}
+		},
+		"components": {
+			"minecraft:icon": "omegaverse_z_admin_key",
+			"minecraft:can_destroy_in_creative": {
+				"value": false
+			},
+			"minecraft:hand_equipped": {
+				"value": true
+			},
+			"minecraft:hover_text_color": "minecoin_gold"
+		}
+	}
+}
