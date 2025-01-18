@@ -1,0 +1,71 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"zhoio"
+		],
+		"generated_with": {
+			"bridge": [
+				"2.7.42"
+			],
+			"dash": [
+				"0.11.7"
+			]
+		}
+	},
+	"header": {
+		"name": "Omegaverse 1.0.5",
+		"description": "Un addon que añade las funcionalidades del Omegaverse",
+		"min_engine_version": [
+			1,
+			21,
+			0
+		],
+		"uuid": "4a139e16-7582-4d7b-b408-57ae66050d49",
+		"version": [
+			1,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "fdbd607b-8207-4446-8380-e90ddfc3aa53",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"uuid": "dc9c8e57-5993-46fb-b3e9-7cd6ddf934a0",
+			"language": "javascript",
+			"entry": "scripts/index.js",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "1bca629d-be23-4a55-857d-2d4d65fad5d7",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.2.0"
+		},
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.15.0"
+		}
+	]
+}
