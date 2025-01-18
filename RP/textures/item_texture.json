@@ -1,0 +1,9 @@
+{
+	"resource_pack_name": "Omegaverse 1.0.5",
+	"texture_name": "atlas.items",
+	"texture_data": {
+		"omegaverse_z_admin_key": {
+			"textures": "textures/items/admin"
+		}
+	}
+}

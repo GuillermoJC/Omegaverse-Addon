@@ -1,0 +1,52 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"zhoio"
+		],
+		"generated_with": {
+			"bridge": [
+				"2.7.42"
+			],
+			"dash": [
+				"0.11.7"
+			]
+		}
+	},
+	"header": {
+		"name": "Omegaverse 1.0.5",
+		"description": "Un addon que añade las funcionalidades del Omegaverse",
+		"min_engine_version": [
+			1,
+			21,
+			0
+		],
+		"uuid": "1bca629d-be23-4a55-857d-2d4d65fad5d7",
+		"version": [
+			1,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "resources",
+			"uuid": "737d765f-5c8f-4a37-8d30-9624b68e20be",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "4a139e16-7582-4d7b-b408-57ae66050d49",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	]
+}
