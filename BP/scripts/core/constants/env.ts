@@ -5,4 +5,7 @@ enum env {
 
 const currentContext = env.DEV
 
-export default currentContext
+export {
+    env,
+    currentContext
+}
