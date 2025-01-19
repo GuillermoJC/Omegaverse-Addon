@@ -21,6 +21,7 @@ export default class PlayerController {
     //El script que corre cuando un nuevo jugador se registra en el mundo
     runFirstSpawn(): void {
 
+        this.#resetEffects()
         this.setInitialTags()
         this.#resetScoreBoards()
         this.#resetDynamicProperties()
@@ -30,14 +31,14 @@ export default class PlayerController {
         new TutorialForm(this._player)
     }
 
-    #setEffect(effectId: EffectIds, level: number) {
+    #resetEffects() {
+        const command = `effect @s clear`
+        system.run(() => this._player.runCommandAsync(command))
+    }
 
-        if (level === 0) {
-            this._player.removeEffect(effectId)
-        } else {
-            const command = `effect @s ${effectId} infinite ${level} true`
-            system.run(() => this._player.runCommandAsync(command))
-        }
+    #setEffect(effectId: EffectIds, level: number) {
+        const command = `effect @s ${effectId} infinite ${level} true`
+        system.run(() => this._player.runCommandAsync(command))
     }
 
     setPlayerEffects() {
