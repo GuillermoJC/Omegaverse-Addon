@@ -24,13 +24,20 @@ export default class PlayerController {
         this.setInitialTags()
         this.#resetScoreBoards()
         this.#resetDynamicProperties()
+        this.#resetProperties()
+        this.setPlayerEffects()
         this.#setPlayerAge(PlayerInitialization.playerInitialAge)
         new TutorialForm(this._player)
     }
 
     #setEffect(effectId: EffectIds, level: number) {
-        const command = `effect @s ${effectId} infinite ${level} true`
-        system.run(() => this._player.runCommandAsync(command))
+
+        if (level === 0) {
+            this._player.removeEffect(effectId)
+        } else {
+            const command = `effect @s ${effectId} infinite ${level} true`
+            system.run(() => this._player.runCommandAsync(command))
+        }
     }
 
     setPlayerEffects() {
@@ -62,6 +69,20 @@ export default class PlayerController {
         const redeemedMiningPoints = this._player.getDynamicProperty(PlayerDynamicProperties.reedemedMiningPoints) as number
 
         if (!redeemedMiningPoints) this._player.setDynamicProperty(PlayerDynamicProperties.reedemedMiningPoints, 0)
+    }
+
+    #resetProperties() {
+        this._player.setProperty(PlayerProperties.playerAge, PlayerInitialization.playerInitialAge)
+        this._player.setProperty(PlayerProperties.playerClassWeight, 0)
+        this._player.setProperty(PlayerProperties.playerDefense, 0)
+        this._player.setProperty(PlayerProperties.playerHaste, 0)
+        this._player.setProperty(PlayerProperties.playerLife, 0)
+        this._player.setProperty(PlayerProperties.playerRegeneration, 0)
+        this._player.setProperty(PlayerProperties.playerSpeed, 0)
+        this._player.setProperty(PlayerProperties.playerStrength, 0)
+        this._player.setProperty(PlayerProperties.playerHasFireInmunity, false)
+        this._player.setProperty(PlayerProperties.playerHasWaterBreathing, false)
+
     }
 
     #resetDynamicProperties() {
