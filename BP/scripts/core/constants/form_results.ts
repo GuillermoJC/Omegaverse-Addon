@@ -1,10 +1,32 @@
+enum AdminFormSelection {
+    TUTORIAL_FORM,
+    POINTS_FORM,
+    SKILLS_FORM,
+    DELETE_INITIAL_TAGS,
+    GIVE_POINTS
+}
+
 enum SkillsPointsOptionsResults {
     AgePoints,
     MiningPoints,
     LinkingPoints,
     HuntingAlfasPoints
 }
+enum SkillOption {
+    Life,
+    Haste,
+    Strength,
+    Speed,
+    Regeneration,
+    Defense,
+    WaterBreathing,
+    FireInmunity
+}
+
+
 
 export {
-    SkillsPointsOptionsResults
+    AdminFormSelection,
+    SkillsPointsOptionsResults,
+    SkillOption
 }

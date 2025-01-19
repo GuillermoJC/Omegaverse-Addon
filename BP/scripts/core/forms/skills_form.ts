@@ -2,17 +2,7 @@ import { Player } from "@minecraft/server"
 import PlayerController from "../controllers/Player"
 import MathFunctions from "../util/MathFunctions"
 import { ModalFormData, ActionFormData } from "@minecraft/server-ui"
-
-enum SkillSelection {
-    Life,
-    Haste,
-    Strength,
-    Speed,
-    Regeneration,
-    Defense,
-    WaterBreathing,
-    FireInmunity
-}
+import { SkillOption } from "../constants/form_results"
 
 export default class SkillsForm {
 
@@ -43,39 +33,37 @@ Para cada año puedes subir un punto de:
             .button(`Respiracion bajo el agua \n ${hasPlayerWaterBreathing}`, "textures/gui/newgui/mob_effects/water_breathing_effect.png")
             .button(`Inmunidad al fuego \n ${hasPlayerFireInmunity}`, "textures/gui/newgui/mob_effects/fire_resistance_effect.png")
             .show(this.#player)
-            .then(({ selection = SkillSelection }) => {
-                const currentPlayer = new PlayerController(this.#player)
-
+            .then(({ selection = SkillOption }) => {
                 switch (selection) {
-                    case SkillSelection.Life: {
+                    case SkillOption.Life: {
                         currentPlayer.incrementPlayerLife()
                         break
                     }
-                    case SkillSelection.Haste: {
+                    case SkillOption.Haste: {
                         currentPlayer.incrementPlayerHaste()
                         break
                     }
-                    case SkillSelection.Strength: {
+                    case SkillOption.Strength: {
                         currentPlayer.incrementPlayerStrength()
                         break
                     }
-                    case SkillSelection.Speed: {
+                    case SkillOption.Speed: {
                         currentPlayer.incrementPlayerSpeed()
                         break
                     }
-                    case SkillSelection.Regeneration: {
+                    case SkillOption.Regeneration: {
                         currentPlayer.incrementPlayerRegeneration()
                         break
                     }
-                    case SkillSelection.Defense: {
+                    case SkillOption.Defense: {
                         currentPlayer.incrementPlayerDefense()
                         break
                     }
-                    case SkillSelection.WaterBreathing: {
+                    case SkillOption.WaterBreathing: {
                         currentPlayer.setPlayerWaterBreathing()
                         break
                     }
-                    case SkillSelection.FireInmunity: {
+                    case SkillOption.FireInmunity: {
                         currentPlayer.setPlayerFireInmunity()
                         break
                     }

@@ -6,15 +6,7 @@ import PointsForm from "../forms/points_form"
 import SkillsForm from "../forms/skills_form"
 import { ScoreboardObjectives } from "../constants/scoreboards"
 import { GiveMePointsFormValues } from "../types/GiveMePointsFormValues"
-import { SkillsPointsOptionsResults } from "../constants/form_results"
-
-enum Selection {
-    TUTORIAL_FORM,
-    POINTS_FORM,
-    SKILLS_FORM,
-    DELETE_INITIAL_TAGS,
-    GIVE_POINTS
-}
+import { AdminFormSelection, SkillsPointsOptionsResults } from "../constants/form_results"
 
 export default class AdminForm {
 
@@ -40,26 +32,26 @@ export default class AdminForm {
             .button("Give me Points")
             .show(this.#player)
             .then((result) => {
-                const { canceled, selection = Selection } = result
+                const { canceled, selection = AdminFormSelection } = result
                 if (!canceled) {
                     switch (selection) {
-                        case Selection.TUTORIAL_FORM: {
+                        case AdminFormSelection.TUTORIAL_FORM: {
                             new TutorialForm(this.#player)
                             break
                         }
-                        case Selection.POINTS_FORM: {
+                        case AdminFormSelection.POINTS_FORM: {
                             new PointsForm(this.#player)
                             break
                         }
-                        case Selection.SKILLS_FORM: {
+                        case AdminFormSelection.SKILLS_FORM: {
                             new SkillsForm(this.#player)
                             break
                         }
-                        case Selection.DELETE_INITIAL_TAGS: {
+                        case AdminFormSelection.DELETE_INITIAL_TAGS: {
                             currentPlayer.removeInitialTags()
                             break
                         }
-                        case Selection.GIVE_POINTS: {
+                        case AdminFormSelection.GIVE_POINTS: {
                             this.#giveMePoints()
                             break
                         }
