@@ -10,7 +10,7 @@
 	"experimentalGameplay": {
 		"creationOfCustomBiomes": false,
 		"upcomingCreatorFeatures": false,
-		"enableGameTestFramework": false,
+		"enableGameTestFramework": true,
 		"focusTargetCamera": false,
 		"dataDrivenJigsawStructures": false,
 		"aimAssist": false,
