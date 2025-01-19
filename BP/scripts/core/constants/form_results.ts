@@ -3,7 +3,8 @@ enum AdminFormSelection {
     POINTS_FORM,
     SKILLS_FORM,
     DELETE_INITIAL_TAGS,
-    GIVE_POINTS
+    GIVE_POINTS,
+    SHOW_PLAYER_PROPERTIES
 }
 
 enum SkillsPointsOptionsResults {
