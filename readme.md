@@ -1,11 +1,41 @@
 
 # <center>Omegaverse</center>
 
-![Omegaverse Icon](/RP/pack_icon.png)
-
 ## Descripción
 
 Este addon está inspirado en el género literario del omegaverse y sus reglas base, por ahora sigue en desarrollo
+
+![Omegaverse Icon](/RP/pack_icon.png)
+
+## Testing con la API de GameTest
+
+Para realizar el testing de este addon se necesita activar el módulo:
+```json
+{
+    "module_name": "@minecraft/server-gametest",
+    "version": "1.0.0-beta"
+}
+```
+Dentro de el objeto dependencies en el archivo [manifest.json](/BP/manifest.json)
+Como se presenta en la siguiente imagen:
+
+![Imagen del módulo](https://i.pinimg.com/736x/7d/88/64/7d886466d713e952fa9d14a0606e7f5d.jpg)
+
+Después de añadir este módulo solo hay que cambiar la propiedad **env.PROD** por **env.DEV** en el archivo [index.ts](/BP/scripts/index.ts)
+En la siguiente imagen se presenta cómo se tiene que ver en producción:
+
+![Imagen del código en producción](https://i.pinimg.com/736x/39/54/21/395421abbe170413c4bd7d0b5d793785.jpg)
+
+Y en la próxima se muestra cómo se ve en desarrollo:
+
+![Imagen del código en desarrollo](https://i.pinimg.com/736x/0c/1c/9f/0c1c9f92986deb017e7b5380214794ed.jpg)
+
+## Testing Manual
+
+Y para testear diferentes funcionalidades manualmente puede pegar el siguiente comando:
+```
+give @s omegaverse_z:admin_key 
+```
 
 ## Mecánicas
 
@@ -13,8 +43,6 @@ Este addon está inspirado en el género literario del omegaverse y sus reglas b
 
 - [x] Al iniciar el mundo se inicializan 4 scoreboards
 - [x] Cada vez que un día pase se va a ejecutar un evento en el runtime
-
-
 
 ### Jugadores
 
@@ -46,6 +74,6 @@ Sin implementar
 * Minecraft Bedrock
 
 ### APIS
-* minecraft/server API
-* minecraft/server-ui API
+* @minecraft/server API
+* @minecraft/server-ui API
 * @minecraft/server-gametest API
