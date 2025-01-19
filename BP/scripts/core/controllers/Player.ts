@@ -7,6 +7,7 @@ import { PlayerDynamicProperties } from "../constants/dynamic_properties"
 import MathFunctions from "../util/MathFunctions"
 import { PlayerInitialization } from "../constants/initial_values"
 import { EffectIds } from "../constants/effect_ids"
+import { currentContext, env } from "../constants/env"
 
 export default class PlayerController {
 
@@ -97,7 +98,7 @@ export default class PlayerController {
     getPlayerAge(): number {
         return this._player.getProperty(PlayerProperties.playerAge) as number
     }
-    incrementPlayerAge(): void {
+    #incrementPlayerAge(): void {
         const newAge = this._player.getProperty(PlayerProperties.playerAge) as number + 1
 
         //Si la edad del jugador es mayor a 12 años y menor a 17 años se debe empezar a decidir qué clase será
@@ -116,16 +117,26 @@ export default class PlayerController {
     }
     incrementPlayerClassWeight(): void {
         const newWeight = this._player.getProperty(PlayerProperties.playerClassWeight) as number + 1
+
+        if (currentContext === env.DEV) console.warn(`The new weight is ${newWeight}; scripts/core/controllers/Player.ts`)
+
         this._player.setProperty(PlayerProperties.playerClassWeight, newWeight)
+        this.#incrementPlayerAge()
     }
     decrementPlayerClassWeight(): void {
         const newWeight = this._player.getProperty(PlayerProperties.playerClassWeight) as number - 1
+
+        if (currentContext === env.DEV) console.warn(`The new weight is ${newWeight}; scripts/core/controllers/Player.ts`)
+
         this._player.setProperty(PlayerProperties.playerClassWeight, newWeight)
+        this.#incrementPlayerAge()
     }
 
     #decideANewClass() {
         const classWeight = this.getPlayerClassWeight()
         const classRandomizedWeight = MathFunctions.randomizeClassWeightSelection(classWeight)
+
+        if (currentContext === env.DEV) console.warn(`The number selected was ${classRandomizedWeight}; scripts/core/controllers/Player.ts`)
 
         //Si devuelve menor a -10 se define como omega
         if (classRandomizedWeight <= -10) this.#changeToOmegaClass()
