@@ -1,5 +1,5 @@
 import { Player } from "@minecraft/server"
-import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui"
+import { ActionFormData, ModalFormData } from "@minecraft/server-ui"
 import PlayerController from "../controllers/Player"
 import TutorialForm from "./tutorial_form"
 import PointsForm from "../forms/points_form"
@@ -102,7 +102,7 @@ export default class AdminForm {
 
     #showPlayerProperties(currentPlayer: PlayerController) {
         const playerName = this.#player.nameTag
-        new MessageFormData()
+        new ActionFormData()
             .title(`Información de ${this.#player.nameTag}`)
             .body(`
 ${playerName} tiene ${currentPlayer.getPlayerAge()} años
@@ -110,14 +110,14 @@ El classWeight de ${playerName} está en ${currentPlayer.getPlayerClassWeight()}
 
 Se ha aumentado la vida en ${currentPlayer.getPlayerLife()} puntos.
 Se ha aumentado la fuerza en ${currentPlayer.getPlayerStrength()} puntos.
-Se ha aumentado la defensa en ${currentPlayer.getPlayerDefense} puntos.
+Se ha aumentado la defensa en ${currentPlayer.getPlayerDefense()} puntos.
 Se ha aumentado la velocidad en ${currentPlayer.getPlayerSpeed()} puntos.
 Se ha aumentado la regeneración en ${currentPlayer.getPlayerRegeneration()} puntos.
 Se ha aumentado la prisa en ${currentPlayer.getPlayerHaste()} puntos.
 Este jugador ${currentPlayer.getPlayerHasFireInmunity() ? "" : "no"} tiene inmunidad al fuego.
 Este jugador ${currentPlayer.getPlayerHasWaterBreathing() ? "" : "no"} tiene respiración bajo el agua.
             `)
-            .button1("Confirmar")
+            .button("Confirmar")
             .show(this.#player)
     }
 
