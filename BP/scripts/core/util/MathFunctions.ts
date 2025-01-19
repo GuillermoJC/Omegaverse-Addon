@@ -1,4 +1,4 @@
-import PlayerController from "../controllers/Player"
+import { PlayerInitialization } from "../constants/initial_values"
 
 export default class MathFunctions {
 
@@ -9,7 +9,7 @@ export default class MathFunctions {
 
     static incrementNextAgeOfPlayer(current: number): number {
         //f(c) = 5c + 1
-        const nextYear = ((current - PlayerController.getInitialAge()) * 5) + 1
+        const nextYear = ((current - PlayerInitialization.playerInitialAge) * 5) + 1
         return nextYear ? nextYear : 1
     }
 
