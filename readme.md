@@ -28,30 +28,30 @@ Para realizar el testing de este addon se necesita activar el módulo:
 }
 ```
 Dentro de el objeto dependencies en el archivo [manifest.json](/BP/manifest.json)
-Como se presenta en la siguiente imagen:
 
 ```json
-{
-	"format_version": "1.20.80",
-	"minecraft:item": {
-		"description": {
-			"identifier": "omegaverse_z:admin_key",
-			"menu_category": {
-				"category": "none" //--> Cambiar esto a "equipment" para manual testing
-			}
+	"dependencies": [
+		{
+			"uuid": "1bca629d-be23-4a55-857d-2d4d65fad5d7",
+			"version": [
+				1,
+				0,
+				0
+			]
 		},
-		"components": {
-			"minecraft:icon": "omegaverse_z_admin_key",
-			"minecraft:can_destroy_in_creative": {
-				"value": false
-			},
-			"minecraft:hand_equipped": {
-				"value": true
-			},
-			"minecraft:hover_text_color": "minecoin_gold"
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.2.0"
+		},
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.15.0"
+		},
+		{
+			"module_name": "@minecraft/server-gametest", //Esta es la dependencia que se añade
+			"version": "1.0.0-beta"
 		}
-	}
-}
+	]
 ```
 
 Después de añadir este módulo solo hay que cambiar la propiedad **env.PROD** por **env.DEV** en el archivo [env.ts](/BP/scripts/core/constants/env.ts) en la variable currentContext
@@ -92,7 +92,29 @@ if(currentContext === env.DEV) console.warn("mensaje; scripts/archivo.ts")
 
 Y para testear diferentes funcionalidades manualmente primero hay que habilitar el objeto especial admin_key en el archivo [admin_key.json](/BP/items/admin_key.json):
 
-![Imagen para habilitar el admin_key](https://i.pinimg.com/1200x/70/c6/63/70c6636aba938c5dd8ac4544f0770143.jpg)
+```json
+{
+	"format_version": "1.20.80",
+	"minecraft:item": {
+		"description": {
+			"identifier": "omegaverse_z:admin_key",
+			"menu_category": {
+				"category": "none" //--> Cambiar esto a "equipment" para manual testing
+			}
+		},
+		"components": {
+			"minecraft:icon": "omegaverse_z_admin_key",
+			"minecraft:can_destroy_in_creative": {
+				"value": false
+			},
+			"minecraft:hand_equipped": {
+				"value": true
+			},
+			"minecraft:hover_text_color": "minecoin_gold"
+		}
+	}
+}
+```
 
 De esta manera se puede acceder a él desde **CREATIVO** o desde el siguiente comando:
 ```
