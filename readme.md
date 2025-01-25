@@ -30,7 +30,29 @@ Para realizar el testing de este addon se necesita activar el módulo:
 Dentro de el objeto dependencies en el archivo [manifest.json](/BP/manifest.json)
 Como se presenta en la siguiente imagen:
 
-![Imagen del módulo](https://i.pinimg.com/736x/7d/88/64/7d886466d713e952fa9d14a0606e7f5d.jpg)
+```json
+{
+	"format_version": "1.20.80",
+	"minecraft:item": {
+		"description": {
+			"identifier": "omegaverse_z:admin_key",
+			"menu_category": {
+				"category": "none" //--> Cambiar esto a "equipment" para manual testing
+			}
+		},
+		"components": {
+			"minecraft:icon": "omegaverse_z_admin_key",
+			"minecraft:can_destroy_in_creative": {
+				"value": false
+			},
+			"minecraft:hand_equipped": {
+				"value": true
+			},
+			"minecraft:hover_text_color": "minecoin_gold"
+		}
+	}
+}
+```
 
 Después de añadir este módulo solo hay que cambiar la propiedad **env.PROD** por **env.DEV** en el archivo [env.ts](/BP/scripts/core/constants/env.ts) en la variable currentContext
 De la siguiente manera:
