@@ -3,4 +3,9 @@ enum env {
     DEV = "development"
 }
 
-export default env
+const currentContext = env.DEV
+
+export {
+    env,
+    currentContext
+}

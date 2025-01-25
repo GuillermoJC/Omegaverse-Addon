@@ -7,6 +7,7 @@ import { PlayerDynamicProperties } from "../constants/dynamic_properties"
 import MathFunctions from "../util/MathFunctions"
 import { PlayerInitialization } from "../constants/initial_values"
 import { EffectIds } from "../constants/effect_ids"
+import { currentContext, env } from "../constants/env"
 
 export default class PlayerController {
 
@@ -20,11 +21,19 @@ export default class PlayerController {
     //El script que corre cuando un nuevo jugador se registra en el mundo
     runFirstSpawn(): void {
 
+        this.#resetEffects()
         this.setInitialTags()
         this.#resetScoreBoards()
         this.#resetDynamicProperties()
+        this.#resetProperties()
+        this.setPlayerEffects()
         this.#setPlayerAge(PlayerInitialization.playerInitialAge)
         new TutorialForm(this._player)
+    }
+
+    #resetEffects() {
+        const command = `effect @s clear`
+        system.run(() => this._player.runCommandAsync(command))
     }
 
     #setEffect(effectId: EffectIds, level: number) {
@@ -63,6 +72,20 @@ export default class PlayerController {
         if (!redeemedMiningPoints) this._player.setDynamicProperty(PlayerDynamicProperties.reedemedMiningPoints, 0)
     }
 
+    #resetProperties() {
+        this._player.setProperty(PlayerProperties.playerAge, PlayerInitialization.playerInitialAge)
+        this._player.setProperty(PlayerProperties.playerClassWeight, 0)
+        this._player.setProperty(PlayerProperties.playerDefense, 0)
+        this._player.setProperty(PlayerProperties.playerHaste, 0)
+        this._player.setProperty(PlayerProperties.playerLife, 0)
+        this._player.setProperty(PlayerProperties.playerRegeneration, 0)
+        this._player.setProperty(PlayerProperties.playerSpeed, 0)
+        this._player.setProperty(PlayerProperties.playerStrength, 0)
+        this._player.setProperty(PlayerProperties.playerHasFireInmunity, false)
+        this._player.setProperty(PlayerProperties.playerHasWaterBreathing, false)
+
+    }
+
     #resetDynamicProperties() {
         this._player.clearDynamicProperties()
         this.initializeDynamicProperties()
@@ -97,7 +120,7 @@ export default class PlayerController {
     getPlayerAge(): number {
         return this._player.getProperty(PlayerProperties.playerAge) as number
     }
-    incrementPlayerAge(): void {
+    #incrementPlayerAge(): void {
         const newAge = this._player.getProperty(PlayerProperties.playerAge) as number + 1
 
         //Si la edad del jugador es mayor a 12 años y menor a 17 años se debe empezar a decidir qué clase será
@@ -116,16 +139,26 @@ export default class PlayerController {
     }
     incrementPlayerClassWeight(): void {
         const newWeight = this._player.getProperty(PlayerProperties.playerClassWeight) as number + 1
+
+        if (currentContext === env.DEV) console.warn(`The new weight is ${newWeight}; scripts/core/controllers/Player.ts`)
+
         this._player.setProperty(PlayerProperties.playerClassWeight, newWeight)
+        this.#incrementPlayerAge()
     }
     decrementPlayerClassWeight(): void {
         const newWeight = this._player.getProperty(PlayerProperties.playerClassWeight) as number - 1
+
+        if (currentContext === env.DEV) console.warn(`The new weight is ${newWeight}; scripts/core/controllers/Player.ts`)
+
         this._player.setProperty(PlayerProperties.playerClassWeight, newWeight)
+        this.#incrementPlayerAge()
     }
 
     #decideANewClass() {
         const classWeight = this.getPlayerClassWeight()
         const classRandomizedWeight = MathFunctions.randomizeClassWeightSelection(classWeight)
+
+        if (currentContext === env.DEV) console.warn(`The number selected was ${classRandomizedWeight}; scripts/core/controllers/Player.ts`)
 
         //Si devuelve menor a -10 se define como omega
         if (classRandomizedWeight <= -10) this.#changeToOmegaClass()

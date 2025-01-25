@@ -30,6 +30,8 @@ export default class AdminForm {
             .button("Remove My Initial tags")
             //Para dar puntos al jugador y testear los puntos de edad
             .button("Give me Points")
+            //Para ver las propiedades del jugador
+            .button("Show Player Properties")
             .show(this.#player)
             .then((result) => {
                 const { canceled, selection = AdminFormSelection } = result
@@ -52,7 +54,11 @@ export default class AdminForm {
                             break
                         }
                         case AdminFormSelection.GIVE_POINTS: {
-                            this.#giveMePoints()
+                            this.#giveMePoints(currentPlayer)
+                            break
+                        }
+                        case AdminFormSelection.SHOW_PLAYER_PROPERTIES: {
+                            this.#showPlayerProperties(currentPlayer)
                             break
                         }
                     }
@@ -61,7 +67,7 @@ export default class AdminForm {
 
     }
 
-    #giveMePoints() {
+    #giveMePoints(currentPlayer: PlayerController) {
         const options: ScoreboardObjectives[] = [ScoreboardObjectives.agePointsDisplayName, ScoreboardObjectives.miningPointsDisplayName, ScoreboardObjectives.linkingPointsDisplayName, ScoreboardObjectives.huntingAlfasPointsDisplayName]
 
         new ModalFormData()
@@ -71,7 +77,6 @@ export default class AdminForm {
             .show(this.#player)
             .then(formData => {
                 const [optionResult, quantity] = formData.formValues as GiveMePointsFormValues
-                const currentPlayer = new PlayerController(this.#player)
 
                 switch (optionResult) {
                     case SkillsPointsOptionsResults.AgePoints: {
@@ -93,6 +98,27 @@ export default class AdminForm {
                 }
 
             })
+    }
+
+    #showPlayerProperties(currentPlayer: PlayerController) {
+        const playerName = this.#player.nameTag
+        new ActionFormData()
+            .title(`Información de ${this.#player.nameTag}`)
+            .body(`
+${playerName} tiene ${currentPlayer.getPlayerAge()} años
+El classWeight de ${playerName} está en ${currentPlayer.getPlayerClassWeight()}
+
+Se ha aumentado la vida en ${currentPlayer.getPlayerLife()} puntos.
+Se ha aumentado la fuerza en ${currentPlayer.getPlayerStrength()} puntos.
+Se ha aumentado la defensa en ${currentPlayer.getPlayerDefense()} puntos.
+Se ha aumentado la velocidad en ${currentPlayer.getPlayerSpeed()} puntos.
+Se ha aumentado la regeneración en ${currentPlayer.getPlayerRegeneration()} puntos.
+Se ha aumentado la prisa en ${currentPlayer.getPlayerHaste()} puntos.
+Este jugador ${currentPlayer.getPlayerHasFireInmunity() ? "" : "no"} tiene inmunidad al fuego.
+Este jugador ${currentPlayer.getPlayerHasWaterBreathing() ? "" : "no"} tiene respiración bajo el agua.
+            `)
+            .button("Confirmar")
+            .show(this.#player)
     }
 
     #player: Player

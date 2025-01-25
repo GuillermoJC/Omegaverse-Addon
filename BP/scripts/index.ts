@@ -3,7 +3,7 @@ import { runtime } from "./core/runtime"
 import PlayerEvents from "./core/events/PlayerEvents"
 import WorldEvents from './core/events/WorldEvents'
 import { MinecraftBlockIds } from './core/constants/block_ids'
-import env from './core/constants/env'
+import { currentContext, env } from './core/constants/env'
 
 
 world.afterEvents.itemUse.subscribe((e) => PlayerEvents.afterUseAdminKey(e))
@@ -26,7 +26,7 @@ system.run(function runnable() {
 })
 
 //Si el addon está en desarrollo registrar todos los test
-if (env.DEV === "development") import("./core/gametests/GametestCreator").then(pack => pack.default.registerAllTests())
+if (currentContext === env.DEV) import("./core/gametests/GametestCreator").then(pack => pack.default.registerAllTests())
 
 //TODO:
 
