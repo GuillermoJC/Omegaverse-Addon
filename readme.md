@@ -7,6 +7,17 @@ Este addon está inspirado en el género literario del omegaverse y sus reglas b
 
 ![Omegaverse Icon](/RP/pack_icon.png)
 
+> [!WARNING]
+> Este ícono es totalmente temporal y no se va a usar en el producto final
+
+> [!NOTE]
+> Cuando se vaya a cambiar el ícono hay que tener las siguientes consideraciones
+> El ícono debe acabar en la extensión **.png**
+> El ícono debe ser cuadrado
+> La idea principal del ícono es:
+> La letra griega Omega en mayúscula siendo encerrada por la letra Alfa del mismo alfabeto
+> La persona que quiera dibujarlo tiene libertad creativa para cualquier cosa que quiera agregar
+
 ## Testing con la API de GameTest
 
 Para realizar el testing de este addon se necesita activar el módulo:
