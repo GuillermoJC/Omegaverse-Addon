@@ -32,10 +32,17 @@ Y en la próxima se muestra cómo se ve en desarrollo:
 
 ## Testing Manual
 
-Y para testear diferentes funcionalidades manualmente puede pegar el siguiente comando:
+Y para testear diferentes funcionalidades manualmente primero hay que habilitar el objeto especial admin_key en el archivo [admin_key.json](/BP/items/admin_key.json):
+
+![Imagen para habilitar el admin_key](https://i.pinimg.com/1200x/70/c6/63/70c6636aba938c5dd8ac4544f0770143.jpg)
+
+De esta manera se puede acceder a él desde **CREATIVO** o desde el siguiente comando:
 ```
 give @s omegaverse_z:admin_key 
 ```
+
+> [!IMPORTANT]
+> Una vez se haya obtenido este objeto al inventario, volver el archivo [admin_key.json](/BP/items/admin_key.json) a su estado original.
 
 ## Mecánicas
 
