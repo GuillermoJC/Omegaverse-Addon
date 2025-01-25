@@ -73,23 +73,23 @@ give @s omegaverse_z:admin_key
 
 ### Mundo
 
+#### Eventos
+
 Los eventos del mundo están definidos en su mayoría en el [index.ts](/BP/scripts/index.ts)
+
+Pero algunos también en el [RuntimeEvents.ts](/BP/scripts/core/events/RuntimeEvents.ts) especificamente en el método **setWorldEvents()**. 
+Para los eventos que no estén definidos como el cambio de día.
+
+* El objeto [RuntimeEvents](/BP/scripts/core/events/) define cuándo se activan los eventos
+* Y el objeto [RuntimeController](/BP/scripts/core/controllers/Runtime.ts) define cómo van a comportarse estos eventos.
 
 ### Jugadores
 
-- [x] Cuando un jugador sube un punto de habilidad la habilidad se coloca automaticamente
-- [ ] Cada que el jugador intente quitarse los efectos, los efectos de habilidad se volverán a colocar
-    - Por morir
-    - Por tomar leche
-- [ ] Cuando un Omega en celo está cerca de un Alfa se activan buffos para este
-    - Regeneración
-    - Respiracion bajo el agua
-- [ ] Los alfas pueden vincular a los omega por medio de un arma que deja una mordida
-- [ ] Los alfa pueden evitar la mordida haciendo un collar que se pone en la parte de la cabeza
+Sin implementar a la documentación
 
 ### Sistema de puntos
 
-Sin implementar
+Sin implementar a la documentación
 
 ## Herramientas
 
