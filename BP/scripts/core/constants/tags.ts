@@ -7,11 +7,22 @@ enum PlayerTags {
 }
 
 enum OmegaTags {
-    hasPeriod = "omegaverse_z:hasPeriod"
+    hasPeriod = "omegaverse_z:hasPeriod",
+    markedBy = "omegaverse_z:markedBy"
+}
+
+enum AlfaTags {
+
+}
+
+enum BetaTags {
+
 }
 
 
 export {
     PlayerTags,
-    OmegaTags
+    OmegaTags,
+    AlfaTags,
+    BetaTags
 }
