@@ -17,7 +17,11 @@ world.afterEvents.worldInitialize.subscribe(() => WorldEvents.onWorldInitialize(
 
 world.afterEvents.itemCompleteUse.subscribe(e => PlayerEvents.afterItemCompleteUse(e))
 
+world.afterEvents.itemReleaseUse.subscribe(e => PlayerEvents.afterItemReleaseUse(e))
+
 world.afterEvents.playerSpawn.subscribe(e => PlayerEvents.afterPlayerSpawnEvent(e))
+
+world.afterEvents.entityHitEntity.subscribe(e => PlayerEvents.afterEntityDie(e))
 
 //El script que se va a ejecutar por tick
 system.run(function runnable() {
