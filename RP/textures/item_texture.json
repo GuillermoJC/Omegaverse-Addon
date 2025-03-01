@@ -4,6 +4,9 @@
 	"texture_data": {
 		"omegaverse_z_admin_key": {
 			"textures": "textures/items/admin"
+		},
+		"omegaverse_z_alfa_fangs": {
+			"textures": "textures/items/texture_fangs"
 		}
 	}
 }

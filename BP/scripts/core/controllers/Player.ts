@@ -16,6 +16,10 @@ export default class PlayerController {
         this._player = player
     }
 
+    getPlayer(): Player {
+        return this._player
+    }
+
     /* ------------------> UTILITY METHODS <------------------ */
 
     //El script que corre cuando un nuevo jugador se registra en el mundo
@@ -66,6 +70,7 @@ export default class PlayerController {
         return this._player.getTags()
     }
 
+    //TODO : Añadir todas las dynamic properties
     initializeDynamicProperties() {
         const redeemedMiningPoints = this._player.getDynamicProperty(PlayerDynamicProperties.reedemedMiningPoints) as number
 

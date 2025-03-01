@@ -34,6 +34,27 @@ export default class OmegaController extends PlayerController {
     static getIsOmega(player: Player): boolean {
         return player.hasTag(PlayerTags.omegaPlayer)
     }
+    static getIsAlreadyMarked(player: Player): boolean {
+        return Boolean(player.getDynamicProperty(OmegaDynamicProperties.markedBy))
+    }
+    getMarkedBy(): string | undefined {
+        return this._player.getDynamicProperty(OmegaDynamicProperties.markedBy) as string
+    }
+
+    /**
+     * @description Set an alfa mark
+     * @returns Returns **true** if the player has been marked correctly or **false** if not.
+     */
+    setMarkedBy(playerName: string): boolean {
+        const lastMarkedPlayer = this.getMarkedBy()
+        if (!lastMarkedPlayer) {
+            this._player.setDynamicProperty(OmegaDynamicProperties.markedBy, playerName)
+            this._player.addTag(`${OmegaTags.markedBy}_${playerName}`)
+
+            return true
+        }
+        else return false
+    }
 
     addTag(tag: PlayerTags | OmegaTags): void {
         this._player.addTag(tag)

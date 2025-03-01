@@ -1,0 +1,33 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:item": {
+		"description": {
+			"identifier": "omegaverse_z:alfa_fangs",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+			"minecraft:icon": "omegaverse_z_alfa_fangs",
+			"minecraft:can_destroy_in_creative": false,
+			"minecraft:cooldown": {
+				"category": "attack",
+				"duration": 0.5
+			},
+			"minecraft:damage": {
+				"value": 1
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:stacked_by_data": false,
+			"minecraft:use_modifiers": {
+				"movement_modifier": 0.9,
+				"use_duration": 1.0
+			},
+			"minecraft:tags": {
+				"tags": [
+					"minecraft:is_sword"
+				]
+			}
+		}
+	}
+}
