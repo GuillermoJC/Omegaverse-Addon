@@ -18,6 +18,8 @@ Este addon está inspirado en el género literario del omegaverse y sus reglas b
 >   * Una letra griega Omega en mayúscula siendo encerrada por la letra Alfa del mismo alfabeto.
 >   * La persona que quiera dibujarlo tiene libertad creativa para cualquier cosa que quiera agregar.
 
+# Documentación para desarrolladores
+
 ## Testing con la API de GameTest
 
 Para realizar el testing de este addon se necesita activar el módulo:
@@ -126,6 +128,12 @@ give @s omegaverse_z:admin_key
 
 ## Mecánicas
 
+### Notas generales para evitar conflictos
+
+* Todos los ids que puedan interferir con otros addons necesitan iniciar con: "omegaverse_z" separado por dos puntos y el nombre del id
+	* Ejemplo: "omegaverse_z:nombre_del_id"
+* Todos los elementos del juego se manejan desde sus respectivos [controladores](/BP/scripts/core/controllers/)
+
 ### Mundo
 
 #### Eventos
@@ -140,7 +148,31 @@ Para los eventos que no estén definidos como el cambio de día.
 
 ### Jugadores
 
-Sin implementar a la documentación
+#### Todos los jugadores
+
+Todos los jugadores empiezan sin una clase y con las siguientes propiedades definidas:
+
+* playerAge
+* playerClassWeight
+* Propiedades para alfa
+	* playerLife
+	* playerStrength
+	* playerDefense
+	* playerHasFireInmunity
+* Propiedades para omega
+	* playerSpeed
+	* playerRegeneration
+	* playerHaste
+	* playerHasWaterBreathing
+
+Y los jugadores no se manejan directamente con el objeto **Player** sino con el objeto **[PlayerController](/BP/scripts/core/controllers/Player.ts)** y de esta manera, el tipado se maneja mejor y se evitan errores.
+
+#### Jugadores Omega
+
+Cuando un nuevo jugador omega se crea, se coloca la tag "omegaverse-z:omega_player".
+
+Desde que el jugador empieza a ser un omega; después de pasar 30 días, el jugador consigue una tag "omegaverse_z:hasPeriod".
+Después de una cantidad de días variable (actualmente 3, próximamente puede ser de 1 a 5) se quita la tag.
 
 ### Sistema de puntos
 
