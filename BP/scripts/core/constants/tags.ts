@@ -8,7 +8,7 @@ enum PlayerTags {
 
 enum OmegaTags {
     hasPeriod = "omegaverse_z:hasPeriod",
-    markedBy = "omegaverse_z:markedBy"
+    markedBy = "omegaverse_z:markedBy:"
 }
 
 enum AlfaTags {
