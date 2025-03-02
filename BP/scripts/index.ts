@@ -5,7 +5,6 @@ import WorldEvents from './core/events/WorldEvents'
 import { MinecraftBlockIds } from './core/constants/block_ids'
 import { currentContext, env } from './core/constants/env'
 
-
 world.afterEvents.itemUse.subscribe((e) => PlayerEvents.afterUseAdminKey(e))
 
 world.afterEvents.playerBreakBlock.subscribe((e) => PlayerEvents.afterBrakeAMobSpawn(e), { blockTypes: [MinecraftBlockIds.MobSpawner] })
@@ -15,13 +14,17 @@ world.afterEvents.playerBreakBlock.subscribe((e) => PlayerEvents.afterBrakeAMobS
 
 world.afterEvents.worldInitialize.subscribe(() => WorldEvents.onWorldInitialize())
 
+world.afterEvents.playerSpawn.subscribe(e => console.warn(e.player.nameTag))
+
 world.afterEvents.itemCompleteUse.subscribe(e => PlayerEvents.afterItemCompleteUse(e))
 
 world.afterEvents.itemReleaseUse.subscribe(e => PlayerEvents.afterItemReleaseUse(e))
 
 world.afterEvents.playerSpawn.subscribe(e => PlayerEvents.afterPlayerSpawnEvent(e))
 
-world.afterEvents.entityHitEntity.subscribe(e => PlayerEvents.afterEntityDie(e))
+world.afterEvents.entityHitEntity.subscribe(e => PlayerEvents.afterEntityHitEntity(e))
+
+world.afterEvents.entityDie.subscribe(e => PlayerEvents.afterEntityDie(e))
 
 //El script que se va a ejecutar por tick
 system.run(function runnable() {
