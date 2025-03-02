@@ -9,7 +9,9 @@ enum EffectIds {
     Haste = "haste",
     WaterBreathing = "water_breathing",
     /*FOR NERF*/
-    Poison = "poison"
+    Poison = "poison",
+    Blindness = "blindness",
+    Weakness = "weakness"
 }
 
 export {

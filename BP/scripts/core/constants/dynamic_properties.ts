@@ -1,5 +1,6 @@
 enum WorldDynamicProperties {
-    lastDayStored = "omegaverse_z:lastDayStored"
+    lastDayStored = "omegaverse_z:lastDayStored",
+    marksToRemove = "omegaverse_z:marksToRemove"
 }
 
 enum PlayerDynamicProperties {
