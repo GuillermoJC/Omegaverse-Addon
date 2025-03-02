@@ -1,4 +1,5 @@
-import { world, EntityDamageCause } from "@minecraft/server"
+import { world, EntityDamageCause, EntityComponentTypes, EntityHealthComponent } from "@minecraft/server"
+import { EffectIds } from "../constants/effect_ids";
 import { OmegaTags } from "../constants/tags";
 import OmegaController from "../controllers/Omega";
 
@@ -25,7 +26,11 @@ export default class OmegaEvents {
             if (!alfaPlayerMark) return
 
             alfaPlayerMark.applyDamage(1, { cause: EntityDamageCause.override, damagingEntity: omegaPlayer.getPlayer() })
-
+            const omegaHealthComponent = omegaPlayer.getPlayer().getComponent(EntityComponentTypes.Health) as EntityHealthComponent
+            if (omegaHealthComponent) {
+                const { currentValue, effectiveMax } = omegaHealthComponent
+                if (currentValue == effectiveMax / 8) alfaPlayerMark.teleport(omegaPlayer.getPlayer().getHeadLocation())
+            }
         }
     }
 
@@ -37,7 +42,9 @@ export default class OmegaEvents {
             if (!alfaPlayerMark) return
 
             alfaPlayerMark.applyDamage(6, { cause: EntityDamageCause.override, damagingEntity: omegaPlayer.getPlayer() })
-            //TODO: Add nerf effects to the mark entity
+            alfaPlayerMark.addEffect(EffectIds.Blindness, 30, { showParticles: false })
+            alfaPlayerMark.addEffect(EffectIds.Weakness, 60, { amplifier: 3, showParticles: false })
+
         }
     }
 }
