@@ -55,6 +55,15 @@ export default class OmegaController extends PlayerController {
         }
         else return false
     }
+    deleteMarkedBy(playerName?: string): boolean {
+
+        const markedByTag = playerName
+            ? `${OmegaTags.markedBy}${playerName}`
+            : this._player.getTags().filter(t => t?.includes(OmegaTags.markedBy))[0]
+
+        if (!markedByTag) return false
+        this._player.removeTag(markedByTag)
+    }
 
     addTag(tag: PlayerTags | OmegaTags): void {
         this._player.addTag(tag)

@@ -1,4 +1,5 @@
 import { Player } from "@minecraft/server";
+import Utility from "../util/Utility";
 import { AlfaDynamicProperties } from "../constants/dynamic_properties";
 import { PlayerTags } from "../constants/tags";
 import PlayerController from "../controllers/Player";
@@ -27,8 +28,8 @@ export default class AlfaController extends PlayerController {
      * @param { Set } markedPlayers A Set with the names of the players
      */
     setMarkedPlayers(markedPlayers: Set<string>): void {
-        const players = Array.from(markedPlayers)
-        this._player.setDynamicProperty(AlfaDynamicProperties.markedPlayers, players.join(";"))
+        const players = Utility.convertSetToString(markedPlayers, ";")
+        this._player.setDynamicProperty(AlfaDynamicProperties.markedPlayers, players)
     }
 
     /**

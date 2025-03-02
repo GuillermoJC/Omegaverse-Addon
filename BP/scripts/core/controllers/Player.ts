@@ -1,5 +1,5 @@
 import { world, system, Player } from "@minecraft/server"
-import { PlayerTags } from "../constants/tags"
+import { OmegaTags, PlayerTags } from "../constants/tags"
 import { PlayerProperties } from "../constants/properties"
 import { ScoreboardObjectives } from "../constants/scoreboards"
 import TutorialForm from "../forms/tutorial_form"
@@ -8,6 +8,8 @@ import MathFunctions from "../util/MathFunctions"
 import { PlayerInitialization } from "../constants/initial_values"
 import { EffectIds } from "../constants/effect_ids"
 import { currentContext, env } from "../constants/env"
+import WorldController from "../controllers/World"
+import MarksUtility from "../util/MarksUtility"
 
 export default class PlayerController {
 
@@ -118,8 +120,14 @@ export default class PlayerController {
         this._player.addTag(PlayerTags.noClassPlayer)
     }
     removeInitialTags(): void {
-        this._player.removeTag(PlayerTags.firstSpawn)
-        this._player.removeTag(PlayerTags.noClassPlayer)
+        const tags = this._player.getTags()
+
+        for (let tag of tags) {
+            if (tag.includes(OmegaTags.markedBy)) {
+                const markName = tag.substring(OmegaTags.markedBy.length)
+                MarksUtility.unLinkOmegaAndAlfa(markName, this._player)
+            }
+        }
     }
 
     getPlayerAge(): number {
