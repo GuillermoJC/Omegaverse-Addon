@@ -68,7 +68,12 @@ export default class AdminForm {
     }
 
     #giveMePoints(currentPlayer: PlayerController) {
-        const options: ScoreboardObjectives[] = [ScoreboardObjectives.agePointsDisplayName, ScoreboardObjectives.miningPointsDisplayName, ScoreboardObjectives.linkingPointsDisplayName, ScoreboardObjectives.huntingAlfasPointsDisplayName]
+        const options: ScoreboardObjectives[] = [
+            ScoreboardObjectives.agePointsDisplayName,
+            ScoreboardObjectives.miningPointsDisplayName,
+            ScoreboardObjectives.linkingPointsDisplayName,
+            ScoreboardObjectives.huntingAlfasPointsDisplayName
+        ]
 
         new ModalFormData()
             .dropdown("Points of", options)
@@ -107,6 +112,11 @@ export default class AdminForm {
             .body(`
 ${playerName} tiene ${currentPlayer.getPlayerAge()} años
 El classWeight de ${playerName} está en ${currentPlayer.getPlayerClassWeight()}
+
+Tiene ${currentPlayer.getAgePoints()} puntos de edad.
+Tiene ${currentPlayer.getMiningPoints()} puntos de minería.
+Tiene ${currentPlayer.getHuntingAlfasPoints()} puntos de caza.
+Tiene ${currentPlayer.getLinkingPoints()} puntos de vinculo.
 
 Se ha aumentado la vida en ${currentPlayer.getPlayerLife()} puntos.
 Se ha aumentado la fuerza en ${currentPlayer.getPlayerStrength()} puntos.

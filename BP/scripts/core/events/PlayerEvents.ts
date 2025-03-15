@@ -1,4 +1,5 @@
 import {
+    world,
     Player,
     ItemUseAfterEvent, ItemReleaseUseAfterEvent, ItemCompleteUseAfterEvent,
     PlayerBreakBlockAfterEvent, PlayerSpawnAfterEvent,
@@ -14,6 +15,8 @@ import AdminForm from "../forms/admin_form"
 import OmegaController from "../controllers/Omega"
 import AlfaController from "../controllers/Alfa"
 import OmegaEvents from "../events/OmegaEvents"
+import { OmegaTags } from "../constants/tags"
+import WorldController from "../controllers/World"
 
 export default class PlayerEvents {
 
@@ -64,8 +67,8 @@ export default class PlayerEvents {
 
                 if (entity instanceof Player) {
                     if (OmegaController.getIsOmega(entity)) break
-                    const currentAlfa = new AlfaController(source)
                     const currentOmega = new OmegaController(entity)
+                    const currentAlfa = new AlfaController(source)
 
                     currentOmega.setMarkedBy(source.nameTag)
                     currentAlfa.addMarkedPlayer(entity.nameTag)
@@ -102,6 +105,9 @@ export default class PlayerEvents {
     }
 
     static afterPlayerSpawnEvent(event: PlayerSpawnAfterEvent) {
+        const { player } = event
+
+        //TODO: Remover todas las tags pendientes
 
     }
 }

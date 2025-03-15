@@ -5,6 +5,8 @@ import WorldEvents from './core/events/WorldEvents'
 import { MinecraftBlockIds } from './core/constants/block_ids'
 import { currentContext, env } from './core/constants/env'
 
+if (currentContext === env.DEV) console.warn("Loading index.ts; scripts/index.ts")
+
 world.afterEvents.itemUse.subscribe((e) => PlayerEvents.afterUseAdminKey(e))
 
 world.afterEvents.playerBreakBlock.subscribe((e) => PlayerEvents.afterBrakeAMobSpawn(e), { blockTypes: [MinecraftBlockIds.MobSpawner] })

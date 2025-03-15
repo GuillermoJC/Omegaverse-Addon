@@ -1,9 +1,10 @@
-import { world, system } from "@minecraft/server"
+import { world, system, } from "@minecraft/server"
 import { ScoreboardObjectives } from "../constants/scoreboards"
 
 export default class WorldEvents {
 
     static onWorldInitialize() {
+
         //Detectar los scoreboards
         const agePointsObjective = world.scoreboard.getObjective(ScoreboardObjectives.agePointsId)
         const huntingAlfasObjective = world.scoreboard.getObjective(ScoreboardObjectives.huntingAlfasPointsId)
@@ -17,5 +18,4 @@ export default class WorldEvents {
         if (!linkingPointsObjective) world.scoreboard.addObjective(ScoreboardObjectives.linkingPointsId, ScoreboardObjectives.linkingPointsDisplayName)
 
     }
-
 }
