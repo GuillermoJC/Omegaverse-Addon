@@ -21,6 +21,8 @@ import Console from "../util/Console"
 import OmegaUtils from "../../../../../Omegaverse%201.0.5/bp/scripts/core/util/OmegaUtils"
 import AlfaUtils from "../../../../../Omegaverse%201.0.5/bp/scripts/core/util/AlfaUtils"
 
+const THIS_FILE = "scripts/core/controllers/PlayerEvents.ts"
+
 export default class PlayerEvents {
 
     static afterUseAdminKey(event: ItemUseAfterEvent) {
@@ -81,10 +83,10 @@ export default class PlayerEvents {
 
             }
 
-            if (!viewedEntities.length) Console.dev("No entities", "scripts/core/controllers/PlayerEvents.ts")
+            if (!viewedEntities.length) Console.dev("No entities", THIS_FILE)
         }
         else {
-            if (currentContext === env.DEV) console.warn(itemStack.typeId)
+            if (currentContext === env.DEV) Console.dev(itemStack.typeId, THIS_FILE)
         }
 
     }
