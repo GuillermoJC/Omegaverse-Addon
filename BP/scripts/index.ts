@@ -4,8 +4,10 @@ import PlayerEvents from "./core/events/PlayerEvents"
 import WorldEvents from './core/events/WorldEvents'
 import { MinecraftBlockIds } from './core/constants/block_ids'
 import { currentContext, env } from './core/constants/env'
+import Console from './core/util/Console'
 
-if (currentContext === env.DEV) console.warn("Loading index.ts; scripts/index.ts")
+
+Console.dev("Loading index.ts", "scripts/index.ts")
 
 world.afterEvents.itemUse.subscribe((e) => PlayerEvents.afterUseAdminKey(e))
 
@@ -16,7 +18,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => PlayerEvents.afterBrakeAMobS
 
 world.afterEvents.worldInitialize.subscribe(() => WorldEvents.onWorldInitialize())
 
-world.afterEvents.playerSpawn.subscribe(e => console.warn(e.player.nameTag))
+world.afterEvents.playerSpawn.subscribe(e => Console.dev(e.player.nameTag, "scripts/index.ts"))
 
 world.afterEvents.itemCompleteUse.subscribe(e => PlayerEvents.afterItemCompleteUse(e))
 
