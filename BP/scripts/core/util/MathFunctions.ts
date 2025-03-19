@@ -1,3 +1,4 @@
+import Console from "../util/Console"
 import { PlayerInitialization } from "../constants/initial_values"
 
 export default class MathFunctions {
@@ -14,7 +15,7 @@ export default class MathFunctions {
     }
 
     static randomizeClassWeightSelection(classWeight: number): number {
-        console.warn("Randomizing class weight selection : Line 17 : File: core/util/MathFunctions.ts")
+        Console.dev("Randomizing class weight selection", "scripts/core/util/MathFunctions.ts")
         //Establecer classWeight como el centro del peso y tomar los 5 numeros anteriores y los 5 siguientes
         const availableNumbers = [classWeight]
         for (let i = classWeight - 1; i >= classWeight - 5; i--) availableNumbers.unshift(i)
