@@ -15,8 +15,11 @@ import AdminForm from "../forms/admin_form"
 import OmegaController from "../controllers/Omega"
 import AlfaController from "../controllers/Alfa"
 import OmegaEvents from "../events/OmegaEvents"
-import { OmegaTags } from "../constants/tags"
-import WorldController from "../controllers/World"
+//import { OmegaTags } from "../constants/tags"
+//import WorldController from "../controllers/World"
+import Console from "../util/Console"
+import OmegaUtils from "../../../../../Omegaverse%201.0.5/bp/scripts/core/util/OmegaUtils"
+import AlfaUtils from "../../../../../Omegaverse%201.0.5/bp/scripts/core/util/AlfaUtils"
 
 export default class PlayerEvents {
 
@@ -57,30 +60,28 @@ export default class PlayerEvents {
     }
 
     static afterItemReleaseUse(event: ItemReleaseUseAfterEvent) {
-        const { itemStack, source } = event
+        const { itemStack, source: alfa } = event
 
-        if (itemStack.typeId === OmegaverseItems.fangs && AlfaController.getIsAlfa(source)) {
-            const viewedEntities = source.getEntitiesFromViewDirection()
+        if (itemStack.typeId === OmegaverseItems.fangs && AlfaController.getIsAlfa(alfa)) {
+            const viewedEntities = alfa.getEntitiesFromViewDirection()
 
             for (let viewedEntity of viewedEntities) {
-                const { entity } = viewedEntity
+                const { entity: entity } = viewedEntity
 
                 if (entity instanceof Player) {
                     if (OmegaController.getIsOmega(entity)) break
-                    const currentOmega = new OmegaController(entity)
-                    const currentAlfa = new AlfaController(source)
 
-                    currentOmega.setMarkedBy(source.nameTag)
-                    currentAlfa.addMarkedPlayer(entity.nameTag)
+                    OmegaUtils.setMarkedBy(entity, alfa.nameTag)
+                    AlfaUtils.addMarkedPlayer(alfa, entity.nameTag)
                 }
                 else {
-                    entity.applyDamage(2, { cause: EntityDamageCause.fireTick, damagingEntity: source })
-                    source.addEffect(EffectIds.Regeneration, 1, { amplifier: 5 })
+                    entity.applyDamage(2, { cause: EntityDamageCause.fireTick, damagingEntity: alfa })
+                    alfa.addEffect(EffectIds.Regeneration, 1, { amplifier: 5 })
                 }
 
             }
 
-            if (!viewedEntities.length && currentContext === env.DEV) console.warn("Nothing caught")
+            if (!viewedEntities.length) Console.dev("No entities", "scripts/core/controllers/PlayerEvents.ts")
         }
         else {
             if (currentContext === env.DEV) console.warn(itemStack.typeId)
