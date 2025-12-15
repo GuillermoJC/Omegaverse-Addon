@@ -1,6 +1,7 @@
 {
 	"format_version": 2,
 	"metadata": {
+		"_todo": "Cambiar el tick recursivo del script index.ts para mejorar el rendimiento"
 		"authors": [
 			"zhoio"
 		],
