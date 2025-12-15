@@ -28,7 +28,9 @@ world.afterEvents.entityHitEntity.subscribe(e => PlayerEvents.afterEntityHitEnti
 
 world.afterEvents.entityDie.subscribe(e => PlayerEvents.afterEntityDie(e))
 
-//El script que se va a ejecutar por tick
+// Se debe cambiar este script para
+// 1. Evitar la recursividad
+// 2. Mejorar el rendimiento futuro del addon
 system.run(function runnable() {
     system.run(runnable)
     runtime()
