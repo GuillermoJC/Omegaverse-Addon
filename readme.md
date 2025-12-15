@@ -5,6 +5,12 @@
 
 Este addon está inspirado en el género literario del omegaverse y sus reglas base, por ahora sigue en desarrollo. 
 
+> [!WARNING]
+> El proyecto está detenido ya que no tengo un dispositivo adecuado para seguirlo
+> La persona que quiera apoyar con este proyecto está totalmente invitada pero debe ponerse en contacto conmigo
+> para poder darle los recursos de los cuales está inspirado este proyecto.
+> correo: memo92975@gmail.com
+
 ![Omegaverse Icon](/RP/pack_icon.png)
 
 > [!WARNING]
